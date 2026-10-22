@@ -106,3 +106,18 @@ async function cargarPersonajes() {
 
 // ===== 6. Cargar personajes al abrir la página =====
 cargarPersonajes();
+
+// ===== BUSCADOR Y FILTROS (Isaac) =====
+
+// Para no pedir datos a la API con cada letra, esperamos 400 ms
+// después de que la persona deja de escribir.
+let temporizador;
+
+buscador.addEventListener("input", () => {
+  clearTimeout(temporizador);
+  temporizador = setTimeout(cargarPersonajes, 400);
+});
+
+// Los filtros buscan apenas se cambia la opción
+filtroEstado.addEventListener("change", cargarPersonajes);
+filtroGenero.addEventListener("change", cargarPersonajes);
