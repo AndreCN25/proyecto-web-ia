@@ -17,7 +17,7 @@ Aplicación web que muestra personajes de Rick and Morty usando la API oficial.
 
 ## Enlaces
 - Repositorio: https://github.com/AndreCN25/proyecto-web-ia
-- Aplicación: [[pegar aquí el enlace de GitHub Pages cuando esté comprobado]]
+- Aplicación: (https://andrecn25.github.io/proyecto-web-ia/)
 
 ## Tres prompts importantes que usamos
 1.Conexión de la API
