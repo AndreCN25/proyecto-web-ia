@@ -1,1 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- Hace que la página se adapte a celulares -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explorador de Rick and Morty</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- "defer" espera a que el HTML cargue antes de ejecutar el JavaScript -->
+  <script src="script.js" defer></script>
+</head>
+<body>
 
+  <header>
+    <h1>Explorador de Rick and Morty</h1>
+    <p>Busca personajes, filtra resultados y guarda tus favoritos.</p>
+  </header>
+
+  <main>
+
+    <!-- Buscador y filtros -->
+    <section id="controles" aria-label="Búsqueda y filtros">
+      <input type="text" id="buscador" placeholder="Buscar por nombre...">
+
+      <select id="filtro-estado">
+        <option value="">Todos los estados</option>
+        <option value="alive">Vivo</option>
+        <option value="dead">Muerto</option>
+        <option value="unknown">Desconocido</option>
+      </select>
+
+      <select id="filtro-genero">
+        <option value="">Todos los géneros</option>
+        <option value="female">Femenino</option>
+        <option value="male">Masculino</option>
+        <option value="genderless">Sin género</option>
+        <option value="unknown">Desconocido</option>
+      </select>
+    </section>
+
+    <!-- Mensajes: JavaScript los mostrará u ocultará -->
+    <p id="mensaje-carga" class="mensaje oculto">Cargando personajes...</p>
+    <p id="mensaje-error" class="mensaje oculto"></p>
+    <p id="mensaje-vacio" class="mensaje oculto">No se encontraron personajes.</p>
+
+    <!-- Aquí JavaScript dibujará las tarjetas -->
+    <section aria-label="Personajes">
+      <h2>Personajes</h2>
+      <div id="lista-personajes" class="cuadricula"></div>
+    </section>
+
+    <!-- Favoritos -->
+    <section aria-label="Favoritos">
+      <h2>Mis favoritos</h2>
+      <p id="mensaje-sin-favoritos">Aún no tienes favoritos.</p>
+      <div id="lista-favoritos" class="cuadricula"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Datos de <a href="https://rickandmortyapi.com" target="_blank" rel="noopener">rickandmortyapi.com</a></p>
+  </footer>
+
+</body>
+</html>
