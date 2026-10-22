@@ -121,3 +121,61 @@ buscador.addEventListener("input", () => {
 // Los filtros buscan apenas se cambia la opción
 filtroEstado.addEventListener("change", cargarPersonajes);
 filtroGenero.addEventListener("change", cargarPersonajes);
+
+// ===== FAVORITOS CON LOCALSTORAGE (Isaac) =====
+
+const listaFavoritos = document.getElementById("lista-favoritos");
+const mensajeSinFavoritos = document.getElementById("mensaje-sin-favoritos");
+
+// Leer los favoritos guardados en el navegador
+function cargarFavoritos() {
+  try {
+    favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+  } catch (error) {
+    favoritos = [];
+  }
+}
+
+// Guardar los favoritos en el navegador (como texto JSON)
+function guardarFavoritos() {
+  localStorage.setItem("favoritos", JSON.stringify(favoritos));
+}
+
+// Dibujar la sección de favoritos
+function mostrarFavoritos() {
+  listaFavoritos.innerHTML = "";
+  mensajeSinFavoritos.classList.toggle("oculto", favoritos.length > 0);
+  favoritos.forEach((personaje) => {
+    listaFavoritos.appendChild(crearTarjeta(personaje));
+  });
+}
+
+// Agregar o quitar un personaje de favoritos
+function alternarFavorito(id) {
+  const indice = favoritos.findIndex((f) => f.id === id);
+
+  if (indice >= 0) {
+    favoritos.splice(indice, 1); // ya estaba: se quita
+  } else {
+    const personaje = personajesActuales.find((p) => p.id === id);
+    if (personaje) {
+      favoritos.push(personaje); // no estaba: se agrega
+    }
+  }
+
+  guardarFavoritos();
+  mostrarPersonajes(personajesActuales); // actualiza los botones
+  mostrarFavoritos();
+}
+
+// Un solo "oyente" para todos los botones de favoritos
+document.addEventListener("click", (evento) => {
+  const boton = evento.target.closest(".btn-favorito");
+  if (boton) {
+    alternarFavorito(Number(boton.dataset.id));
+  }
+});
+
+// Al abrir la página, mostrar los favoritos guardados
+cargarFavoritos();
+mostrarFavoritos();
