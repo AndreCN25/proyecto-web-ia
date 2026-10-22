@@ -179,3 +179,29 @@ document.addEventListener("click", (evento) => {
 // Al abrir la página, mostrar los favoritos guardados
 cargarFavoritos();
 mostrarFavoritos();
+
+// ===== MODO OSCURO (Mariana) =====
+
+const botonTema = document.getElementById("btn-tema");
+
+function aplicarTema(oscuro) {
+  document.body.classList.toggle("oscuro", oscuro);
+  botonTema.textContent = oscuro ? "☀️ Modo claro" : "🌙 Modo oscuro";
+}
+
+// Al abrir la página, recordar el tema elegido la última vez
+try {
+  aplicarTema(localStorage.getItem("tema") === "oscuro");
+} catch (error) {
+  aplicarTema(false);
+}
+
+botonTema.addEventListener("click", () => {
+  const oscuro = !document.body.classList.contains("oscuro");
+  aplicarTema(oscuro);
+  try {
+    localStorage.setItem("tema", oscuro ? "oscuro" : "claro");
+  } catch (error) {
+    console.error(error);
+  }
+});
