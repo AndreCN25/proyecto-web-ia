@@ -150,3 +150,22 @@ main {
     grid-template-columns: 1fr;
   }
 }
+
+/* ===== Modo oscuro (funcionalidad extra) ===== */
+body.oscuro {
+  --fondo: #14181d;
+  --tarjeta: #1f262e;
+  --texto: #e8edf2;
+  --texto-suave: #a5b2bf;
+  --borde: #33404d;
+}
+
+#btn-tema {
+  padding: 0.5rem 1rem;
+  border: 2px solid #ffffff;
+  border-radius: 20px;
+  background: transparent;
+  color: #ffffff;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
